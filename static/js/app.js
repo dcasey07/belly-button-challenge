@@ -86,10 +86,10 @@ d3.json(url).then(function(data) {
     var result = resultArray[0];
 
     // Create a variable that links to the html
-    var table = d3.select("#sample-metadata");
+    var panel = d3.select("#sample-metadata");
 
     // Use the variable to clear any existing metadata 
-    table.selectAll("*").remove();
+    panel.selectAll("*").remove();
 
     // Append the panel with each key and value pair in the metadata
     Object.entries(result).forEach(([key, value]) => {
@@ -100,13 +100,13 @@ d3.json(url).then(function(data) {
   // Display the first Subject ID info by default
   updateDemo(data.names[0]);
 
-  // Subject ID Dropdown Menu
+    // Subject ID Dropdown Menu
   // Populate a dropdown menu with all the Subject ID numbers
   var dropdownMenu = d3.select("#selDataset");
   data.names.forEach(function(name) {
     dropdownMenu.append("option").text(name).property("value", name);
   });  
-
+  
   // Trigger updated data visualizations when a Subject ID is selected from the dropdown
   d3.select("#selDataset").on("change", function() {
     var updatedSample = d3.select(this).property("value");
